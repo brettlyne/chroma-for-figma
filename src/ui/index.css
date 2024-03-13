@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #9720b5;
+  --text-color: #333;
+  --lighter-text-color: #444;
+  --darker-text-color: #222;
+  --bg-color: #eaeaea;
+  --lighter-bg-color: #f0f0f0;
+  --lightest-bg-color: #fafafa;
+}
+
 html {
   box-sizing: border-box;
   font-size: 16px;
