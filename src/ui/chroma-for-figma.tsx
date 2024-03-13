@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import "./index.css";
 
 const App = () => {
   onmessage = (event) => {
@@ -21,7 +22,12 @@ const App = () => {
     // }
   };
 
-  return <>Hello world.</>;
+  return (
+    <>
+      <p>Hello world.</p>
+      <code>this is some code #0012345667879</code>
+    </>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
