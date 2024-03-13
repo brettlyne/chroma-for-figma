@@ -46,8 +46,7 @@ img {
 }
 
 body,
-p,
-button {
+p {
   margin: 0;
   font-family: "Noto Sans", sans-serif;
   font-optical-sizing: auto;
@@ -57,10 +56,35 @@ button {
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
+  letter-spacing: 0.4px;
 }
 
 code {
   font-family: "Fira Code", monospace;
   font-optical-sizing: auto;
   font-size: 14px;
+}
+
+.segmented-button {
+  display: inline;
+
+  ul {
+    list-style: none;
+  }
+  li {
+    display: inline;
+    &:not(:last-child)::after {
+      content: "•";
+      color: var(--lighter-text-color);
+    }
+  }
+  button {
+    color: var(--primary-color);
+    border: none;
+    background: none;
+    cursor: pointer;
+    &.selected {
+      font-weight: 600;
+    }
+  }
 }

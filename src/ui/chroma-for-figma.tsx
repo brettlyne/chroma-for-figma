@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+
+import SegmentedButton from "./components/SegmentedButton";
 import "./index.css";
 
 const App = () => {
@@ -25,7 +27,17 @@ const App = () => {
   return (
     <>
       <p>Hello world.</p>
-      <code>this is some code #0012345667879</code>
+      <pre>
+        <code>this is some code #0012345667879</code>
+      </pre>
+      <p>
+        Test:
+        <SegmentedButton options={["one", "two", "three"]} />
+      </p>
+      <p>
+        Test:
+        <SegmentedButton options={["sequential", "diverging"]} />
+      </p>
     </>
   );
 };
