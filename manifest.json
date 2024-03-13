@@ -2,17 +2,13 @@
   "name": "Chroma Data Vis Color Palettes",
   "id": "1349811839779755266",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "./dist/code.js",
   "capabilities": [],
   "enableProposedApi": false,
-  "editorType": [
-    "figma"
-  ],
-  "ui": "ui.html",
+  "editorType": ["figma"],
+  "ui": "./dist/index.html",
   "networkAccess": {
-    "allowedDomains": [
-      "none"
-    ]
+    "allowedDomains": ["none"]
   },
   "documentAccess": "dynamic-page"
 }
