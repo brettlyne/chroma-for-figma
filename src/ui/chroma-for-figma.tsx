@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-import SegmentedButton from "./components/SegmentedButton";
 import "./index.css";
 
+import SegmentedButton from "./components/SegmentedButton";
+import Checkbox from "./components/Checkbox";
+import Icon from "./components/Icon";
+
 const App = () => {
+  const [iconColor, setIconColor] = useState("rebeccapurple");
+
   onmessage = (event) => {
     const message = JSON.parse(event.data.pluginMessage);
 
@@ -26,8 +31,11 @@ const App = () => {
 
   return (
     <>
-      <h1>Chroma.js data vis color palette helper</h1>
-      <p>Hello world.</p>
+      <p>Chroma.js data vis color palette helper </p>
+      <h1>UI Component testing</h1>
+
+      <hr />
+
       <pre>
         <code>this is some code #0012345667879</code>
       </pre>
@@ -39,10 +47,45 @@ const App = () => {
         Test:
         <SegmentedButton options={["sequential", "diverging"]} />
       </p>
+
+      <hr />
+
       <p>
         Number of colors:
         <input style={{ width: "60px" }} type="number" min="1" max="100" />
       </p>
+
+      <hr />
+
+      <p>
+        this is a button:
+        <button className="button">test button</button>
+      </p>
+
+      <hr />
+
+      <p>
+        <Checkbox label="AbCdEfGhIjKLmnoPQRstuVW" />
+      </p>
+
+      <hr />
+
+      <p>
+        Icons, color:{" "}
+        <SegmentedButton
+          options={["rebeccapurple", "green", "coral"]}
+          onChange={(e) => setIconColor(e)}
+        />
+      </p>
+      <p style={{ color: iconColor }}>
+        <Icon icon="eyedropper" />
+        <Icon icon="add" />
+        <Icon icon="drag_handle" />
+        <Icon icon="copy" />
+        <Icon icon="paint_bucket" />
+      </p>
+
+      <hr />
     </>
   );
 };

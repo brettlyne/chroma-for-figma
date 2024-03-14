@@ -51,7 +51,8 @@ img {
 
 body,
 p,
-input {
+input,
+button {
   margin: 0;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -76,6 +77,48 @@ h1 {
 }
 
 /* COMPONENTS */
+.button {
+  background-color: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 4px 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  filter: drop-shadow(0px 1px 5px rgba(33, 3, 41, 0));
+  &:hover {
+    filter: drop-shadow(0px 1px 5px rgba(33, 3, 41, 0.2));
+  }
+  &:active {
+    transform: scale(0.98);
+    background: #fceeff;
+  }
+}
+
+input[type="number"] {
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.checkbox {
+  cursor: pointer;
+  input {
+    display: none;
+  }
+  &:hover {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  svg {
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    margin-right: 4px;
+  }
+}
 
 .segmented-button {
   display: inline;
@@ -99,13 +142,6 @@ h1 {
       font-weight: 600;
     }
   }
-}
-
-input[type="number"] {
-  border: none;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: 600;
 }
 
 /* GENERAL LAYOUT */
