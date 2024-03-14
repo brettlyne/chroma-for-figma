@@ -26,6 +26,7 @@ const App = () => {
 
   return (
     <>
+      <h1>Chroma.js data vis color palette helper</h1>
       <p>Hello world.</p>
       <pre>
         <code>this is some code #0012345667879</code>
@@ -37,6 +38,10 @@ const App = () => {
       <p>
         Test:
         <SegmentedButton options={["sequential", "diverging"]} />
+      </p>
+      <p>
+        Number of colors:
+        <input style={{ width: "60px" }} type="number" min="1" max="100" />
       </p>
     </>
   );

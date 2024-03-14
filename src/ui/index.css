@@ -1,3 +1,5 @@
+/* GLOBAL STYLES AND RESET */
+
 :root {
   --primary-color: #9720b5;
   --text-color: #333;
@@ -45,25 +47,35 @@ img {
   height: auto;
 }
 
+/* TYPOGRAPHY */
+
 body,
-p {
+p,
+input {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 13px;
-  letter-spacing: 0.4px;
+  color: var(--text-color);
 }
 
 code {
   font-family: "Fira Code", monospace;
   font-optical-sizing: auto;
   font-size: 14px;
+  font-weight: 400;
 }
+
+h1 {
+  font-size: 25px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+/* COMPONENTS */
 
 .segmented-button {
   display: inline;
@@ -87,4 +99,16 @@ code {
       font-weight: 600;
     }
   }
+}
+
+input[type="number"] {
+  border: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* GENERAL LAYOUT */
+body {
+  background-color: var(--bg-color);
 }
