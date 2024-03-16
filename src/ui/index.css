@@ -77,6 +77,9 @@ h1 {
 }
 
 /* COMPONENTS */
+button {
+  cursor: pointer;
+}
 .button {
   background-color: none;
   border: 2px solid var(--primary-color);
@@ -84,7 +87,6 @@ h1 {
   border-radius: 20px;
   font-weight: 600;
   padding: 4px 16px;
-  cursor: pointer;
   transition: all 0.15s ease;
   filter: drop-shadow(0px 1px 5px rgba(33, 3, 41, 0));
   &:hover {
@@ -96,11 +98,12 @@ h1 {
   }
 }
 
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
   border: none;
   padding: 2px 6px;
   border-radius: 4px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .checkbox {
@@ -137,14 +140,71 @@ input[type="number"] {
     color: var(--primary-color);
     border: none;
     background: none;
-    cursor: pointer;
     &.selected {
       font-weight: 600;
     }
   }
 }
 
+.color-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  &:last-child {
+    border: none;
+  }
+
+  input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    &::-webkit-color-swatch-wrapper {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+    }
+    &::-webkit-color-swatch {
+      width: 34px;
+      height: 34px;
+      border: none;
+    }
+  }
+
+  input[type="text"] {
+    width: 68px;
+    text-align: center;
+  }
+
+  button {
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #666;
+    border-radius: 50%;
+    &:hover {
+      color: var(--primary-color);
+    }
+    &:active {
+      background: #fceeff;
+    }
+  }
+  .drag-handle {
+    cursor: grab;
+    color: #a1a1a1;
+    margin-left: auto;
+  }
+}
+
 /* GENERAL LAYOUT */
 body {
   background-color: var(--bg-color);
+}
+
+.container {
+  margin: 0 8px;
 }

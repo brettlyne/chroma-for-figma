@@ -6,9 +6,13 @@ import "./index.css";
 import SegmentedButton from "./components/SegmentedButton";
 import Checkbox from "./components/Checkbox";
 import Icon from "./components/Icon";
+import ColorInputItem from "./components/ColorInputItem";
+import ColorInputList from "./components/ColorInputList";
 
 const App = () => {
   const [iconColor, setIconColor] = useState("rebeccapurple");
+  const [color, setColor] = useState("#ff8800");
+  const [colors, setColors] = useState(["#ff8800", "#0088ff", "#8800ff"]);
 
   onmessage = (event) => {
     const message = JSON.parse(event.data.pluginMessage);
@@ -30,7 +34,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <p>Chroma.js data vis color palette helper </p>
       <h1>UI Component testing</h1>
 
@@ -86,7 +90,16 @@ const App = () => {
       </p>
 
       <hr />
-    </>
+
+      <p>color input row</p>
+      <div>
+        <ColorInputItem color={color} onChange={(c) => setColor(c)} />
+      </div>
+      <hr />
+
+      <p>color input list</p>
+      <ColorInputList colors={colors} onChange={(c) => setColors(c)} />
+    </div>
   );
 };
 

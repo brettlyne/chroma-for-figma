@@ -4,11 +4,12 @@ type IconProps = {
   icon: "eyedropper" | "paint_bucket" | "copy" | "add" | "drag_handle";
 };
 
-const Icon: React.FC<IconProps> = ({ icon }) => {
+const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
   switch (icon) {
     case "eyedropper":
       return (
         <svg
+          {...props}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -31,11 +32,11 @@ const Icon: React.FC<IconProps> = ({ icon }) => {
     case "paint_bucket":
       return (
         <svg
+          {...props}
           width="24"
           height="24"
-          viewBox="0 0 24 24"
-          fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          fill="none"
         >
           <g clip-path="url(#clip0_43_40)">
             <path
@@ -54,6 +55,7 @@ const Icon: React.FC<IconProps> = ({ icon }) => {
     case "copy":
       return (
         <svg
+          {...props}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -75,6 +77,7 @@ const Icon: React.FC<IconProps> = ({ icon }) => {
     case "add":
       return (
         <svg
+          {...props}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -90,6 +93,7 @@ const Icon: React.FC<IconProps> = ({ icon }) => {
     case "drag_handle":
       return (
         <svg
+          {...props}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
