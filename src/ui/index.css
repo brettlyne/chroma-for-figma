@@ -150,6 +150,7 @@ input[type="text"] {
   display: flex;
   gap: 8px;
   align-items: center;
+  background-color: var(--bg-color);
   border-bottom: 1px solid #f5f5f5;
   &:last-child {
     border: none;
