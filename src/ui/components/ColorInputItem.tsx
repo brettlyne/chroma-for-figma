@@ -1,10 +1,13 @@
 import React from "react";
 import copy from "copy-to-clipboard";
 import chroma from "chroma-js";
+import { Draggable } from "react-beautiful-dnd";
 
 import Icon from "./Icon";
 
 interface ColorInputItemProps {
+  id: string;
+  index: number;
   color: string;
   onChange: (newColor: string) => void;
   onEyedropper: () => void;
@@ -13,6 +16,8 @@ interface ColorInputItemProps {
 }
 
 const ColorInputItem: React.FC<ColorInputItemProps> = ({
+  id,
+  index,
   color,
   onChange,
   onEyedropper,
@@ -44,26 +49,36 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   };
 
   return (
-    <div className="color-input">
-      <input type="color" value={color} onChange={handleColorChange} />
-      <input
-        type="text"
-        value={textInput}
-        onChange={handleTextInput}
-        onBlur={handleTextInputBlur}
-      />
-
-      <button onClick={copyColorToClipboard}>
-        <Icon icon="copy" />
-      </button>
-      <button onClick={onEyedropper}>
-        <Icon icon="eyedropper" />
-      </button>
-      <button onClick={onPaintBucket}>
-        <Icon icon="paint_bucket" />
-      </button>
-      <Icon className="drag-handle" icon="drag_handle" />
-    </div>
+    <Draggable draggableId={id} index={index}>
+      {(provided) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className="color-input-item"
+        >
+          <div className="color-input">
+            <input type="color" value={color} onChange={handleColorChange} />
+            <input
+              type="text"
+              value={textInput}
+              onChange={handleTextInput}
+              onBlur={handleTextInputBlur}
+            />
+            <button onClick={copyColorToClipboard}>
+              <Icon icon="copy" />
+            </button>
+            <button onClick={onEyedropper}>
+              <Icon icon="eyedropper" />
+            </button>
+            <button onClick={onPaintBucket}>
+              <Icon icon="paint_bucket" />
+            </button>
+            <Icon className="drag-handle" icon="drag_handle" />
+          </div>
+        </div>
+      )}
+    </Draggable>
   );
 };
 

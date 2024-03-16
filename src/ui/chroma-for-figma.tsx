@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { DragDropContext } from "react-beautiful-dnd";
 
 import "./index.css";
 
@@ -11,8 +12,16 @@ import ColorInputList from "./components/ColorInputList";
 
 const App = () => {
   const [iconColor, setIconColor] = useState("rebeccapurple");
-  const [color, setColor] = useState("#ff8800");
-  const [colors, setColors] = useState(["#ff8800", "#0088ff", "#8800ff"]);
+  const [colors1, setColors1] = useState([
+    { color: "#ff8800", id: "2" },
+    { color: "#0088ff", id: "3" },
+    { color: "#8800ff", id: "4" },
+  ]);
+  const [colors2, setColors2] = useState([
+    { color: "#bbaa00", id: "5" },
+    { color: "#ccdd22", id: "6" },
+    { color: "#aaee44", id: "7" },
+  ]);
 
   onmessage = (event) => {
     const message = JSON.parse(event.data.pluginMessage);
@@ -31,6 +40,19 @@ const App = () => {
     //     "*"
     //   );
     // }
+  };
+
+  const handleDragEnd = (result: any) => {
+    console.log(result);
+
+    // if (!result.destination) {
+    //   return;
+    // }
+
+    // const newColors = [...colors];
+    // const [removed] = newColors.splice(result.source.index, 1);
+    // newColors.splice(result.destination.index, 0, removed);
+    // setColors(newColors);
   };
 
   return (
@@ -91,14 +113,12 @@ const App = () => {
 
       <hr />
 
-      <p>color input row</p>
-      <div>
-        <ColorInputItem color={color} onChange={(c) => setColor(c)} />
-      </div>
-      <hr />
-
       <p>color input list</p>
-      <ColorInputList colors={colors} onChange={(c) => setColors(c)} />
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <ColorInputList id="1" colors={colors1} setColors={setColors1} />
+        <div className="spacer" style={{ height: "12px" }} />
+        <ColorInputList id="2" colors={colors2} setColors={setColors2} />
+      </DragDropContext>
     </div>
   );
 };

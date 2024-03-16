@@ -6,6 +6,6 @@
     "lib": ["es2017"],
     "strict": true,
     "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-  },
+    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"]
+  }
 }
