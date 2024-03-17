@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import PalettePreview from "../components/PalettePreview";
+import Icon from "../components/Icon";
 
 const colors = [
   "#174498",
@@ -16,7 +17,17 @@ const StartPage = ({ loadPalette }) => {
   return (
     <>
       <div className="space20" />
-      <h1>Chroma.js data vis color palette helper</h1>
+      <a
+        style={{ position: "absolute", top: "26px", right: "20px" }}
+        href="https://github.com/brettlyne/chroma-for-figma"
+        target="_blank"
+      >
+        <Icon icon="octocat" />
+      </a>
+      <h1>
+        Chroma.js data vis <br />
+        color palette helper
+      </h1>
       <div className="space12" />
       <p>
         Multi-hued multi-stop color scales tool adapted for Figma from{` `}

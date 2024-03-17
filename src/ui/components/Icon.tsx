@@ -1,7 +1,13 @@
 import React from "react";
 
 type IconProps = {
-  icon: "eyedropper" | "paint_bucket" | "copy" | "add" | "drag_handle";
+  icon:
+    | "eyedropper"
+    | "paint_bucket"
+    | "copy"
+    | "add"
+    | "drag_handle"
+    | "octocat";
 };
 
 const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
@@ -80,6 +86,25 @@ const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
           <rect width="14" height="2" x="5" y="7" fill="currentColor" rx="1" />
           <rect width="14" height="2" x="5" y="11" fill="currentColor" rx="1" />
           <rect width="14" height="2" x="5" y="15" fill="currentColor" rx="1" />
+        </svg>
+      );
+
+    case "octocat":
+      return (
+        <svg {...svgProps}>
+          <g clip-path="url(#a)">
+            <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              d="M11.96 0A12 12 0 0 0 0 12.05c0 5.33 3.43 9.84 8.18 11.44.6.12.81-.26.81-.58l-.02-2.24c-3.32.72-4.02-1.43-4.02-1.43-.53-1.4-1.33-1.76-1.33-1.76-1.08-.74.08-.74.08-.74 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.79 1.32 3.48 1 .1-.78.42-1.32.76-1.62-2.66-.28-5.45-1.32-5.45-5.95 0-1.31.47-2.39 1.23-3.23-.12-.3-.54-1.53.12-3.2 0 0 1-.31 3.28 1.25a11.5 11.5 0 0 1 5.99 0c2.27-1.56 3.28-1.24 3.28-1.24.66 1.66.24 2.9.12 3.2a4.63 4.63 0 0 1 1.23 3.22c0 4.63-2.8 5.65-5.47 5.95.44.38.82 1.1.82 2.24l-.02 3.3c0 .33.21.7.8.59 4.76-1.6 8.19-6.1 8.19-11.44A11.98 11.98 0 0 0 11.96 0Z"
+              clip-rule="evenodd"
+            />
+          </g>
+          <defs>
+            <clipPath id="a">
+              <path fill="#fff" d="M0 0h24v23.51H0z" />
+            </clipPath>
+          </defs>
         </svg>
       );
 
