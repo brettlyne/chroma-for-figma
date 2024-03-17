@@ -1,14 +1,16 @@
+//  you can import this script in index.html if you want to view these UI component tests
+
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 
-import "./index.css";
+import "../index.css";
 
-import SegmentedButton from "./components/SegmentedButton";
-import Checkbox from "./components/Checkbox";
-import Icon from "./components/Icon";
-import ColorInputItem from "./components/ColorInputItem";
-import ColorInputList from "./components/ColorInputList";
+import SegmentedButton from "../components/SegmentedButton";
+import Checkbox from "../components/Checkbox";
+import Icon from "../components/Icon";
+import ColorInputItem from "../components/ColorInputItem";
+import ColorInputList from "../components/ColorInputList";
 
 const App = () => {
   const [iconColor, setIconColor] = useState("rebeccapurple");
