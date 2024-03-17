@@ -1,4 +1,4 @@
-figma.showUI(__html__, { width: 320, height: 540 });
+figma.showUI(__html__, { width: 370, height: 666 });
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
