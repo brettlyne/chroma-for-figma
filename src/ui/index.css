@@ -76,6 +76,24 @@ h1 {
   font-weight: 500;
 }
 
+strong {
+  font-weight: 500;
+}
+
+/* SPACERS */
+.space8 {
+  height: 8px;
+}
+.space12 {
+  height: 12px;
+}
+.space16 {
+  height: 16px;
+}
+.space20 {
+  height: 20px;
+}
+
 /* COMPONENTS */
 button {
   cursor: pointer;
@@ -146,6 +164,28 @@ input[type="text"] {
   }
 }
 
+.palette-preview {
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 12px;
+  padding: 4px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  box-shadow: 0px 8px 12px -4px rgba(0, 0, 0, 0.07);
+  &:hover {
+    box-shadow: 0px 8px 8px -6px rgba(0, 0, 0, 0.15);
+    background-color: white;
+
+    box-shadow: 0px 8 px 11px -8px rgba(151, 32, 181, 0.27);
+    /* background: #999; */
+    outline: 1px solid var(--primary-color);
+  }
+  div {
+    height: 24px;
+    flex: 1;
+  }
+}
+
 .color-input {
   display: flex;
   gap: 8px;
@@ -208,4 +248,11 @@ body {
 
 .container {
   margin: 0 8px;
+}
+
+.columns {
+  width: 100%;
+  display: flex;
+  column-gap: 12px;
+  flex-wrap: wrap;
 }
