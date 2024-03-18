@@ -7,7 +7,8 @@ type IconProps = {
     | "copy"
     | "add"
     | "drag_handle"
-    | "octocat";
+    | "octocat"
+    | "back_arrow";
 };
 
 const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
@@ -105,6 +106,30 @@ const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
               <path fill="#fff" d="M0 0h24v23.51H0z" />
             </clipPath>
           </defs>
+        </svg>
+      );
+
+    case "trash":
+      return (
+        <svg {...svgProps}>
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M14.09 2.75c.38 0 .76.12 1.07.33.31.22.55.52.67.87l.5 1.42h3c.25 0 .48.1.65.26.17.17.27.39.27.62 0 .23-.1.45-.27.62a.94.94 0 0 1-.65.25h-.91v10.5c0 .7-.3 1.37-.8 1.86-.52.5-1.22.77-1.95.77H8.33c-.73 0-1.43-.28-1.94-.77-.52-.5-.8-1.16-.8-1.86V7.13h-.92a.94.94 0 0 1-.65-.25.86.86 0 0 1-.27-.62c0-.23.1-.45.27-.62.17-.16.4-.25.65-.25h3l.5-1.43c.12-.35.36-.65.67-.87a1.9 1.9 0 0 1 1.07-.33h4.18Zm2.5 4.38H7.41v10.5c0 .23.1.45.27.61.17.17.4.26.64.26h7.34c.24 0 .47-.1.64-.26a.85.85 0 0 0 .27-.61V7.13Zm-2.5-2.63H9.91l-.3.88h4.79l-.31-.88Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      );
+
+    case "back_arrow":
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="5"
+          height="6"
+          fill="none"
+        >
+          <path fill="currentColor" d="M0 3 4.5.4v5.2L0 3Z" />
         </svg>
       );
 
