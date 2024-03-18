@@ -2,6 +2,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 
 import ColorInputItem from "./ColorInputItem";
+import Icon from "./Icon";
 
 interface ColorInputListProps {
   id: string;
@@ -33,6 +34,12 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
     // setColors(newColors);
   };
 
+  const addColor = () => {
+    const newColors = [...colors];
+    newColors.push({ color: "#00ff00", id: Math.random().toString() });
+    setColors(newColors);
+  };
+
   return (
     <Droppable droppableId={id}>
       {(provided) => (
@@ -50,6 +57,10 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
               onChange={(c) => handleColorChange(c, index)}
             />
           ))}
+          <div className="add-color" onClick={addColor}>
+            <Icon icon="add" />
+            <p>add color</p>
+          </div>
           {provided.placeholder}
         </div>
       )}
