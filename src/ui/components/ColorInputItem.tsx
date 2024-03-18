@@ -23,8 +23,8 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   onEyedropper,
   onPaintBucket,
   onDragHandleDrag,
-  showDelete,
   onDelete,
+  lastItemInList,
 }) => {
   const [textInput, setTextInput] = React.useState(
     color.replace("#", "").toUpperCase()
@@ -51,7 +51,7 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   };
 
   return (
-    <Draggable draggableId={id} index={index} isDragDisabled={!showDelete}>
+    <Draggable draggableId={id} index={index} isDragDisabled={lastItemInList}>
       {(provided) => (
         <div
           ref={provided.innerRef}
@@ -76,7 +76,7 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
             <button onClick={onPaintBucket}>
               <Icon icon="paint_bucket" />
             </button>
-            {showDelete ? (
+            {!lastItemInList ? (
               <>
                 <Icon className="drag-handle" icon="drag_handle" />
                 <button onClick={onDelete}>
