@@ -55,6 +55,7 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
               id={item.id}
               color={item.color}
               onChange={(c) => handleColorChange(c, index)}
+              showDelete={colors.length > 1}
             />
           ))}
           <div className="add-color" onClick={addColor}>
