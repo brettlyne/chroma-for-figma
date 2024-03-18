@@ -8,7 +8,10 @@ type IconProps = {
     | "add"
     | "drag_handle"
     | "octocat"
-    | "back_arrow";
+    | "back_arrow"
+    | "trash"
+    | "small_check"
+    | "small_x";
 };
 
 const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
@@ -130,6 +133,38 @@ const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
           fill="none"
         >
           <path fill="currentColor" d="M0 3 4.5.4v5.2L0 3Z" />
+        </svg>
+      );
+
+    case "small_check":
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="11"
+          height="9"
+          fill="none"
+        >
+          <path
+            fill="currentColor"
+            d="M10.94 1.06c-.05.09-.1.17-.18.24L4.01 8.04a.75.75 0 0 1-1.06 0L.2 5.3a.75.75 0 0 1 1.06-1.06l2.22 2.21L9.7.24a.75.75 0 0 1 1.24.82Z"
+          />
+        </svg>
+      );
+
+    case "small_x":
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+          fill="none"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="1.5"
+            d="m8.35 1.65-7 7M1.35 1.65l7 7M8.35 1.65l-7 7"
+          />
         </svg>
       );
 
