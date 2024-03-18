@@ -3,9 +3,10 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 import StartPage from "./pages/StartPage";
+import ChromaPage from "./pages/ChromaPage";
 
 const App = () => {
-  const [page, setPage] = useState("start");
+  const [page, setPage] = useState("chroma");
 
   const [colors1, setColors1] = useState([
     { color: "#ff8800", id: "2" },
@@ -40,6 +41,9 @@ const App = () => {
   return (
     <div className="container">
       {page === "start" ? <StartPage setPage={setPage} /> : null}
+      {page === "chroma" ? (
+        <ChromaPage goBack={() => setPage("start")} />
+      ) : null}
     </div>
   );
 };
