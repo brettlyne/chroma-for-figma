@@ -21,6 +21,12 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
     setColors(newColors);
   };
 
+  const handleDelete = (index: number) => {
+    const newColors = [...colors];
+    newColors.splice(index, 1);
+    setColors(newColors);
+  };
+
   const handleDragEnd = (result: any) => {
     console.log(result);
 
@@ -56,6 +62,7 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
               color={item.color}
               onChange={(c) => handleColorChange(c, index)}
               lastItemInList={colors.length === 1}
+              onDelete={() => handleDelete(index)}
             />
           ))}
           <div className="add-color" onClick={addColor}>
