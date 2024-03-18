@@ -13,6 +13,7 @@ interface ColorInputItemProps {
   onEyedropper: () => void;
   onPaintBucket: () => void;
   onDragHandleDrag: () => void;
+  toast: (toastString: string) => void;
 }
 
 const ColorInputItem: React.FC<ColorInputItemProps> = ({
@@ -25,6 +26,7 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   onDragHandleDrag,
   onDelete,
   lastItemInList,
+  toast,
 }) => {
   const [textInput, setTextInput] = React.useState(
     color.replace("#", "").toUpperCase()
@@ -48,6 +50,7 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
 
   const copyColorToClipboard = () => {
     copy(color);
+    toast(`${color} copied to clipboard`);
   };
 
   return (

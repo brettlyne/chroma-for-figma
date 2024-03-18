@@ -8,12 +8,14 @@ interface ColorInputListProps {
   id: string;
   colors: string[];
   setColors: (newColors: string[]) => void;
+  toast: (toastString: string[]) => void;
 }
 
 const ColorInputList: React.FC<ColorInputListProps> = ({
   id,
   colors,
   setColors,
+  toast,
 }) => {
   const handleColorChange = (newColor: string, index: number) => {
     const newColors = [...colors];
@@ -50,6 +52,7 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
               onChange={(c) => handleColorChange(c, index)}
               lastItemInList={colors.length === 1}
               onDelete={() => handleDelete(index)}
+              toast={toast}
             />
           ))}
           <div className="add-color" onClick={addColor}>

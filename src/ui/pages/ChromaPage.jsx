@@ -8,7 +8,7 @@ import Checkbox from "../components/Checkbox";
 import ColorInputItem from "../components/ColorInputItem";
 import ColorInputList from "../components/ColorInputList";
 
-const ChromaPage = ({ goBack }) => {
+const ChromaPage = ({ goBack, toast }) => {
   const [colors1, setColors1] = useState([
     { id: "1", color: "#FF0000" },
     { id: "2", color: "#00FF00" },
@@ -56,11 +56,21 @@ const ChromaPage = ({ goBack }) => {
         <strong style={{ fontWeight: 600 }}>Input colors A:</strong>
         <div className="space4" />
         <DragDropContext onDragEnd={handleDragEnd}>
-          <ColorInputList id="1" colors={colors1} setColors={setColors1} />
+          <ColorInputList
+            id="1"
+            colors={colors1}
+            setColors={setColors1}
+            toast={toast}
+          />
           <div className="space" style={{ height: "12px" }} />
           <strong style={{ fontWeight: 600 }}>Input colors B:</strong>
           <div className="space4" />
-          <ColorInputList id="2" colors={colors2} setColors={setColors2} />
+          <ColorInputList
+            id="2"
+            colors={colors2}
+            setColors={setColors2}
+            toast={toast}
+          />
         </DragDropContext>
       </p>
       <div className="space12" />

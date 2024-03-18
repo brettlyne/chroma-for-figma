@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { ToastContainer, toast, Flip } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
+
 import StartPage from "./pages/StartPage";
 import ChromaPage from "./pages/ChromaPage";
 
 const App = () => {
   const [page, setPage] = useState("chroma");
-
-  const [colors1, setColors1] = useState([
-    { color: "#ff8800", id: "2" },
-    { color: "#0088ff", id: "3" },
-    { color: "#8800ff", id: "4" },
-  ]);
-  const [colors2, setColors2] = useState([
-    { color: "#bbaa00", id: "5" },
-    { color: "#ccdd22", id: "6" },
-    { color: "#aaee44", id: "7" },
-  ]);
 
   onmessage = (event) => {
     const message = JSON.parse(event.data.pluginMessage);
@@ -42,8 +34,9 @@ const App = () => {
     <div className="container">
       {page === "start" ? <StartPage setPage={setPage} /> : null}
       {page === "chroma" ? (
-        <ChromaPage goBack={() => setPage("start")} />
+        <ChromaPage goBack={() => setPage("start")} toast={toast} />
       ) : null}
+      <ToastContainer transition={Flip} autoClose={2000} />
     </div>
   );
 };
