@@ -53,14 +53,29 @@ const ChromaPage = ({ goBack }) => {
       </p>
       <div className="space12" />
       <p>
-        <strong style={{ fontWeight: 600 }}>Input colors:</strong>
+        <strong style={{ fontWeight: 600 }}>Input colors A:</strong>
         <div className="space4" />
         <DragDropContext onDragEnd={handleDragEnd}>
           <ColorInputList id="1" colors={colors1} setColors={setColors1} />
           <div className="space" style={{ height: "12px" }} />
+          <strong style={{ fontWeight: 600 }}>Input colors B:</strong>
+          <div className="space4" />
           <ColorInputList id="2" colors={colors2} setColors={setColors2} />
         </DragDropContext>
       </p>
+      <div className="space12" />
+
+      <p>
+        <Checkbox label="Correct lightness" />
+      </p>
+      <div className="space4" />
+
+      <p>
+        <Checkbox label="Bezier interpolation" />
+      </p>
+      <div className="space12" />
+
+      <p style={{ fontWeight: 600 }}>Resulting Palette:</p>
     </>
   );
 };
