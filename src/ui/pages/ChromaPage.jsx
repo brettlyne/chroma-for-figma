@@ -37,7 +37,7 @@ const ChromaPage = ({ goBack, toast }) => {
   return (
     <>
       <div className="space8" />
-      <p className="back-link">
+      <p className="back-link" onClick={goBack}>
         <Icon icon="back_arrow" />
         <span>Back</span>
       </p>
