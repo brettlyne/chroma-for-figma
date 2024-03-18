@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import PalettePreview from "../components/PalettePreview";
 import Icon from "../components/Icon";
 
+// TODO: load actual palettes once I have the data (tool functions)
 const colors = [
   "#174498",
   "#4768A9",
