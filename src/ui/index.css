@@ -126,6 +126,16 @@ button {
   }
 }
 
+button.text {
+  color: var(--primary-color);
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: double underline;
+  }
+}
+
 input[type="number"],
 input[type="text"] {
   border: none;
@@ -224,6 +234,7 @@ input[type="text"] {
   background-color: var(--bg-color);
 
   input[type="color"] {
+    appearance: none;
     -webkit-appearance: none;
     border: none;
     width: 34px;
@@ -266,6 +277,20 @@ input[type="text"] {
     color: #a1a1a1;
     margin-left: auto;
   }
+}
+
+.color-result-item {
+  border-bottom: 1px solid #f5f5f5;
+  &:last-child {
+    border: none;
+  }
+  button {
+    margin: 0 2px;
+  }
+}
+.color-result-swatch {
+  width: 34px;
+  height: 34px;
 }
 
 .Toastify__toast-body {

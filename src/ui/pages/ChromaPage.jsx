@@ -7,6 +7,7 @@ import SegmentedButton from "../components/SegmentedButton";
 import Checkbox from "../components/Checkbox";
 import ColorInputItem from "../components/ColorInputItem";
 import ColorInputList from "../components/ColorInputList";
+import PaletteResults from "../components/PaletteResults/PaletteResults";
 
 const ChromaPage = ({ goBack, toast }) => {
   const [colors1, setColors1] = useState([
@@ -85,7 +86,13 @@ const ChromaPage = ({ goBack, toast }) => {
       </p>
       <div className="space12" />
 
-      <p style={{ fontWeight: 600 }}>Resulting Palette:</p>
+      <PaletteResults
+        colors={["174498", "4768A9", "6B8FBB", "8FB6CC", "BADEDB", "FFFFE3"]}
+        toast={toast}
+      />
+
+      <div className="space20" />
+      <div className="space20" />
     </>
   );
 };
