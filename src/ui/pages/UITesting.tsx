@@ -111,6 +111,11 @@ const App = () => {
         <Icon icon="drag_handle" />
         <Icon icon="copy" />
         <Icon icon="paint_bucket" />
+        <Icon icon="octocat" />
+        <Icon icon="back_arrow" />
+        <Icon icon="trash" />
+        <Icon icon="small_check" />
+        <Icon icon="small_x" />
       </p>
 
       <hr />
