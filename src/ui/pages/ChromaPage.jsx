@@ -77,7 +77,6 @@ const ChromaPage = ({ goBack, toast }) => {
   };
 
   const colors = [colors1.map((c) => c.color), colors2.map((c) => c.color)];
-  console.log(colors);
   const even = numColors % 2 === 0;
   const diverging = mode === "diverging";
   const numColorsLeft = diverging
@@ -116,8 +115,6 @@ const ChromaPage = ({ goBack, toast }) => {
   const steps = (
     even && diverging ? stepsLeft.slice(0, stepsLeft.length - 1) : stepsLeft
   ).concat(stepsRight.slice(1));
-
-  console.log(steps);
 
   return (
     <>

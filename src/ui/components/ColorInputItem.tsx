@@ -53,6 +53,19 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
     toast(`${color} copied to clipboard`);
   };
 
+  const setFill = (color) => {
+    const [r, g, b] = chroma(color).rgb();
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "set-fill",
+          color: { r: r / 255, g: g / 255, b: b / 255 },
+        },
+      },
+      "*"
+    );
+  };
+
   return (
     <Draggable draggableId={id} index={index} isDragDisabled={lastItemInList}>
       {(provided) => (
@@ -76,7 +89,7 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
             <button onClick={onEyedropper}>
               <Icon icon="eyedropper" />
             </button>
-            <button onClick={onPaintBucket}>
+            <button onClick={() => setFill(color)}>
               <Icon icon="paint_bucket" />
             </button>
             {!lastItemInList ? (

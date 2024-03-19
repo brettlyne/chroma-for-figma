@@ -1,22 +1,34 @@
 import React from "react";
 import copy from "copy-to-clipboard";
+import chroma from "chroma-js";
 
 import Icon from "../Icon";
 
 interface PaletteResultsListProps {
   colors: string[];
   toast: (toastString: string[]) => void;
-  onPaintBucket: () => void;
 }
 
 const PaletteResultsList: React.FC<PaletteResultsListProps> = ({
   colors,
   toast,
-  onPaintBucket,
 }) => {
   const copyToClipboard = (color) => {
     copy(color);
     toast(`${color} copied to clipboard`);
+  };
+
+  const setFill = (color) => {
+    const [r, g, b] = chroma(color).rgb();
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "set-fill",
+          color: { r: r / 255, g: g / 255, b: b / 255 },
+        },
+      },
+      "*"
+    );
   };
 
   return (
@@ -40,7 +52,7 @@ const PaletteResultsList: React.FC<PaletteResultsListProps> = ({
             <Icon icon="copy" />
           </button>
 
-          <button onClick={onPaintBucket}>
+          <button onClick={() => setFill(color)}>
             <Icon icon="paint_bucket" />
           </button>
         </div>
