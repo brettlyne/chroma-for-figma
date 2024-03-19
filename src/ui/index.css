@@ -128,11 +128,11 @@ button {
 
 button.text {
   color: var(--primary-color);
+  background: none;
   border: 0;
   padding: 0;
-  text-decoration: underline;
   &:hover {
-    text-decoration: double underline;
+    text-decoration: underline;
   }
 }
 
@@ -291,6 +291,24 @@ input[type="text"] {
 .color-result-swatch {
   width: 34px;
   height: 34px;
+}
+
+button.colorblind {
+  font-size: 12px;
+  margin-left: auto;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  &.fail {
+    color: #d20000;
+  }
+  svg {
+    margin-right: 2px;
+  }
+  &:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
 }
 
 .Toastify__toast-body {

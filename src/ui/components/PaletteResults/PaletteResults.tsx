@@ -1,6 +1,7 @@
 import React from "react";
 
 import PaletteResultsList from "./PaletteResultsList";
+import Icon from "../Icon";
 
 interface PaletteResultsProps {
   colors: string[];
@@ -10,7 +11,14 @@ interface PaletteResultsProps {
 const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
   return (
     <div className="palette-results">
-      <p style={{ fontWeight: 600 }}>Resulting Palette:</p>
+      <div style={{ display: "flex" }}>
+        <p style={{ fontWeight: 600 }}>Resulting Palette:</p>
+        <button className="text colorblind fail">
+          {/* <Icon icon="small_check" /> */}
+          <Icon icon="small_x" />
+          not colorblind safe
+        </button>
+      </div>
       <div className="space4" />
       <div style={{ display: "flex", height: "34px" }}>
         {colors.map((color, index) => (
