@@ -42,6 +42,26 @@ const ChromaPage = ({ goBack, toast }) => {
     sourceId === "1" ? setColors1([...colors1]) : setColors2([...colors2]);
   };
 
+  onmessage = (event) => {
+    const message = JSON.parse(event.data.pluginMessage);
+    if (message.msgType === "set-color-by-id") {
+      const { id, color } = message;
+      const hexColor = chroma([
+        color.r * 255,
+        color.g * 255,
+        color.b * 255,
+      ]).hex();
+      const colorSet = colors1.some((c) => c.id === id) ? 1 : 2;
+      const newColors = (colorSet === 1 ? colors1 : colors2).map((c) => {
+        if (c.id === id) {
+          return { ...c, color: hexColor };
+        }
+        return c;
+      });
+      colorSet === 1 ? setColors1(newColors) : setColors2(newColors);
+    }
+  };
+
   // ================================================================
   // below code is from the original svelte component, see here for reference:
   // https://github.com/gka/palettes/blob/f91e5ab399c646482fca6e110c173b5ab31d14bf/src/PalettePreview.svelte

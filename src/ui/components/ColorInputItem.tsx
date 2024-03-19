@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import copy from "copy-to-clipboard";
 import chroma from "chroma-js";
 import { Draggable } from "react-beautiful-dnd";
@@ -10,8 +10,6 @@ interface ColorInputItemProps {
   index: number;
   color: string;
   onChange: (newColor: string) => void;
-  onEyedropper: () => void;
-  onPaintBucket: () => void;
   onDragHandleDrag: () => void;
   toast: (toastString: string) => void;
 }
@@ -21,8 +19,6 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   index,
   color,
   onChange,
-  onEyedropper,
-  onPaintBucket,
   onDragHandleDrag,
   onDelete,
   lastItemInList,
@@ -32,8 +28,11 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
     color.replace("#", "").toUpperCase()
   );
 
+  useEffect(() => {
+    setTextInput(color.replace("#", "").toUpperCase());
+  }, [color]);
+
   const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTextInput(event.target.value.replace("#", "").toUpperCase());
     onChange(event.target.value);
   };
 
@@ -44,13 +43,24 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   const handleTextInputBlur = () => {
     const newColor = chroma.valid(textInput) ? textInput : color;
     const newHex = chroma(newColor).hex("rgb");
-    setTextInput(newHex.replace("#", "").toUpperCase());
     onChange(newHex);
   };
 
   const copyColorToClipboard = () => {
     copy(color);
     toast(`${color} copied to clipboard`);
+  };
+
+  const eyeDropper = () => {
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "eye-dropper",
+          id,
+        },
+      },
+      "*"
+    );
   };
 
   const setFill = (color) => {
@@ -86,7 +96,7 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
             <button onClick={copyColorToClipboard}>
               <Icon icon="copy" />
             </button>
-            <button onClick={onEyedropper}>
+            <button onClick={eyeDropper}>
               <Icon icon="eyedropper" />
             </button>
             <button onClick={() => setFill(color)}>
