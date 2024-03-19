@@ -10,6 +10,9 @@ import ColorInputList from "../components/ColorInputList";
 import PaletteResults from "../components/PaletteResults/PaletteResults";
 
 const ChromaPage = ({ goBack, toast }) => {
+  const [mode, setMode] = useState("sequential");
+  const [numColors, setNumColors] = useState(6);
+
   const [colors1, setColors1] = useState([
     { id: "1", color: "#FF0000" },
     { id: "2", color: "#00FF00" },
@@ -20,6 +23,9 @@ const ChromaPage = ({ goBack, toast }) => {
     { id: "5", color: "#00FF00" },
     { id: "6", color: "#0000FF" },
   ]);
+
+  const [correctLightness, setCorrectLightness] = useState(false);
+  const [bezierInterpolation, setBezierInterpolation] = useState(false);
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
@@ -45,16 +51,29 @@ const ChromaPage = ({ goBack, toast }) => {
       <div className="space16" />
       <p>
         Palette type:
-        <SegmentedButton options={["sequential", "diverging"]} />
+        <SegmentedButton
+          options={["sequential", "diverging"]}
+          value={mode}
+          onChange={(value) => setMode(value)}
+        />
       </p>
       <div className="space12" />
       <p>
         Number of colors:{` `}
-        <input style={{ width: "60px" }} type="number" min="1" max="100" />
+        <input
+          style={{ width: "60px" }}
+          type="number"
+          min="1"
+          max="100"
+          value={numColors}
+          onChange={(e) => setNumColors(e.target.value)}
+        />
       </p>
       <div className="space12" />
       <p>
-        <strong style={{ fontWeight: 600 }}>Input colors A:</strong>
+        <strong style={{ fontWeight: 600 }}>
+          Input colors{mode === "diverging" ? " A:" : null}
+        </strong>
         <div className="space4" />
         <DragDropContext onDragEnd={handleDragEnd}>
           <ColorInputList
@@ -63,26 +82,38 @@ const ChromaPage = ({ goBack, toast }) => {
             setColors={setColors1}
             toast={toast}
           />
-          <div className="space" style={{ height: "12px" }} />
-          <strong style={{ fontWeight: 600 }}>Input colors B:</strong>
-          <div className="space4" />
-          <ColorInputList
-            id="2"
-            colors={colors2}
-            setColors={setColors2}
-            toast={toast}
-          />
+          {mode === "diverging" ? (
+            <>
+              <div className="space" style={{ height: "12px" }} />
+              <strong style={{ fontWeight: 600 }}>Input colors B:</strong>
+              <div className="space4" />
+              <ColorInputList
+                id="2"
+                colors={colors2}
+                setColors={setColors2}
+                toast={toast}
+              />
+            </>
+          ) : null}
         </DragDropContext>
       </p>
       <div className="space12" />
 
       <p>
-        <Checkbox label="Correct lightness" />
+        <Checkbox
+          label="Correct lightness"
+          checked={correctLightness}
+          onChange={(e) => setCorrectLightness(e.target.checked)}
+        />
       </p>
       <div className="space4" />
 
       <p>
-        <Checkbox label="Bezier interpolation" />
+        <Checkbox
+          label="Bezier interpolation"
+          checked={bezierInterpolation}
+          onChange={(e) => setBezierInterpolation(e.target.checked)}
+        />
       </p>
       <div className="space12" />
 

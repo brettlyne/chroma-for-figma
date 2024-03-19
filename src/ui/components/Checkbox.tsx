@@ -2,29 +2,21 @@ import React, { useState } from "react";
 
 interface CheckboxProps {
   label: string;
+  checked: boolean;
+  onChange: () => void;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
+const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange }) => {
   return (
     <label className="checkbox">
-      <input
-        type="checkbox"
-        checked={isChecked}
-        onChange={handleCheckboxChange}
-      />
+      <input type="checkbox" checked={checked} onChange={onChange} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
         fill="none"
       >
-        {isChecked ? (
+        {checked ? (
           <path
             stroke="currentColor"
             stroke-linecap="round"
