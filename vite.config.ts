@@ -10,5 +10,6 @@ export default defineConfig({
     emptyOutDir: false,
     cssCodeSplit: false,
     outDir: "../../dist",
+    minify: "false",
   },
 });
