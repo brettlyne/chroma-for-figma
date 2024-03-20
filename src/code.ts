@@ -70,14 +70,37 @@ figma.ui.onmessage = (msg) => {
   if (msg.type === "create-swatches") {
     const colors = msg.colors;
     const swatchSize = 100;
+    const offsetX = figma.viewport.center.x - (colors.length * swatchSize) / 2;
+    const offsetY = figma.viewport.center.y - swatchSize / 2;
+
     for (const [index, color] of colors.entries()) {
       const rect = figma.createRectangle();
-      console.log("rect.x", rect.x);
-      rect.x = index * swatchSize;
-      rect.y = 0;
+      rect.x = offsetX + index * swatchSize;
+      rect.y = offsetY;
       rect.resize(swatchSize, swatchSize);
       rect.fills = [{ type: "SOLID", color }];
       figma.currentPage.appendChild(rect);
     }
+
+    const gradient = figma.createRectangle();
+    gradient.x = offsetX;
+    gradient.y = offsetY + swatchSize + 4;
+    gradient.resize(swatchSize * colors.length, swatchSize / 2);
+    gradient.fills = [
+      {
+        type: "GRADIENT_LINEAR",
+        gradientStops: colors.map(
+          (color: { r: number; g: number; b: number }, index: number) => ({
+            color: { ...color, a: 1 },
+            position: index / (colors.length - 1),
+          })
+        ),
+        gradientTransform: [
+          [1, 0, 0],
+          [0, 0, 0],
+        ],
+      },
+    ];
+    figma.currentPage.appendChild(gradient);
   }
 };

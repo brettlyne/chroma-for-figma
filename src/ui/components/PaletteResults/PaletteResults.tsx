@@ -16,6 +16,21 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
 
   const colorblindResults = colorBlindCheck(colors);
 
+  const createSwatches = () => {
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: "create-swatches",
+          colors: colors.map((color) => {
+            const [r, g, b] = chroma(color).rgb();
+            return { r: r / 255, g: g / 255, b: b / 255 };
+          }),
+        },
+      },
+      "*"
+    );
+  };
+
   return (
     <>
       {modalState === "colorblind" ? (
@@ -54,9 +69,14 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
         </div>
         <div className="space8" />
         <p>
-          Export as <button className="text">swatches</button> |{" "}
-          <button className="text">styles or variables</button> |{" "}
-          <button className="text">hex codes</button>
+          Export as{" "}
+          <button onClick={createSwatches} className="text">
+            swatches
+          </button>{" "}
+          | <button className="text">styles or variables</button> |{" "}
+          <button className="text" onClick={() => setModalState("hex")}>
+            hex codes
+          </button>
         </p>
         <div className="space12" />
         <PaletteResultsList colors={colors} toast={toast} />
