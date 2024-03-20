@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import { colorBlindSim } from "../../utils/colorBlind";
@@ -12,6 +12,13 @@ const ColorblindnessModal = ({
   children,
   colorblindResults,
 }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div className="modal">
       <Icon class="modal-close-btn" icon="close" onClick={onClose} />
