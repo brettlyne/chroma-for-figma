@@ -42,13 +42,13 @@ const PaletteResultsList: React.FC<PaletteResultsListProps> = ({
 
           <input
             type="text"
-            value={"#" + color}
+            value={color}
             readonly
             style={{ width: "80px" }}
             onFocus={(e) => e.target.select()}
           />
 
-          <button onClick={() => copyToClipboard("#" + color)}>
+          <button onClick={() => copyToClipboard(color)}>
             <Icon icon="copy" />
           </button>
 
