@@ -10,6 +10,7 @@ type IconProps = {
     | "octocat"
     | "back_arrow"
     | "trash"
+    | "close"
     | "small_check"
     | "small_x";
 };
@@ -133,6 +134,25 @@ const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
           fill="none"
         >
           <path fill="currentColor" d="M0 3 4.5.4v5.2L0 3Z" />
+        </svg>
+      );
+
+    case "close":
+      return (
+        <svg {...svgProps}>
+          <g
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="3"
+            clip-path="url(#a)"
+          >
+            <path d="m2 2 20 20M22 2 2 22" />
+          </g>
+          <defs>
+            <clipPath id="a">
+              <path fill="#fff" d="M0 0h24v24H0z" />
+            </clipPath>
+          </defs>
         </svg>
       );
 
