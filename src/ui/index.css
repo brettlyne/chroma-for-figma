@@ -70,7 +70,8 @@ a:hover {
   color: var(--primary-color);
 }
 
-code {
+code,
+.code {
   font-family: "Fira Code", monospace;
   font-optical-sizing: auto;
   font-size: 14px;
@@ -138,6 +139,22 @@ button.text {
   padding: 0;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.icon-button {
+  height: 24px;
+  width: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #666;
+  border-radius: 50%;
+  &:hover {
+    color: var(--primary-color);
+  }
+  &:active {
+    background: #fceeff;
   }
 }
 
@@ -262,21 +279,6 @@ input[type="text"] {
     text-align: center;
   }
 
-  button {
-    height: 24px;
-    width: 24px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: #666;
-    border-radius: 50%;
-    &:hover {
-      color: var(--primary-color);
-    }
-    &:active {
-      background: #fceeff;
-    }
-  }
   .drag-handle {
     cursor: grab;
     color: #a1a1a1;

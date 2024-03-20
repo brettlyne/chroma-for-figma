@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import chroma from "chroma-js";
 
 import { colorBlindCheck } from "../../utils/colorBlind";
 
 import ColorblindnessModal from "./ColorblindnessModal";
+import HexCodesModal from "./HexCodesModal";
 import PaletteResultsList from "./PaletteResultsList";
 import Icon from "../Icon";
 
@@ -38,6 +40,14 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
           palette={colors}
           colorblindResults={colorblindResults}
           onClose={() => setModalState(false)}
+        />
+      ) : null}
+
+      {modalState === "hex" ? (
+        <HexCodesModal
+          palette={colors}
+          onClose={() => setModalState(false)}
+          toast={toast}
         />
       ) : null}
 

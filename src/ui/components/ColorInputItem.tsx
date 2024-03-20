@@ -93,19 +93,19 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
               onChange={handleTextInput}
               onBlur={handleTextInputBlur}
             />
-            <button onClick={copyColorToClipboard}>
+            <button className="icon-button" onClick={copyColorToClipboard}>
               <Icon icon="copy" />
             </button>
-            <button onClick={eyeDropper}>
+            <button className="icon-button" onClick={eyeDropper}>
               <Icon icon="eyedropper" />
             </button>
-            <button onClick={() => setFill(color)}>
+            <button className="icon-button" onClick={() => setFill(color)}>
               <Icon icon="paint_bucket" />
             </button>
             {!lastItemInList ? (
               <>
                 <Icon className="drag-handle" icon="drag_handle" />
-                <button onClick={onDelete}>
+                <button className="icon-button" onClick={onDelete}>
                   <Icon icon="trash" />
                 </button>
               </>

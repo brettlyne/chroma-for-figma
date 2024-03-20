@@ -48,11 +48,14 @@ const PaletteResultsList: React.FC<PaletteResultsListProps> = ({
             onFocus={(e) => e.target.select()}
           />
 
-          <button onClick={() => copyToClipboard(color)}>
+          <button
+            className="icon-button"
+            onClick={() => copyToClipboard(color)}
+          >
             <Icon icon="copy" />
           </button>
 
-          <button onClick={() => setFill(color)}>
+          <button className="icon-button" onClick={() => setFill(color)}>
             <Icon icon="paint_bucket" />
           </button>
         </div>
