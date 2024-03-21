@@ -1,5 +1,7 @@
 import React from "react";
 
+import presets from "../utils/presets";
+
 import PalettePreview from "../components/PalettePreview";
 import Icon from "../components/Icon";
 
@@ -13,7 +15,12 @@ const colors = [
   "#FFFFE3",
 ];
 
-const StartPage = ({ loadPalette }) => {
+const StartPage = ({ setPage, setInitialState }) => {
+  const loadPalette = (preset) => {
+    setInitialState(preset);
+    setPage("chroma");
+  };
+
   return (
     <>
       <div className="space20" />
@@ -54,19 +61,23 @@ const StartPage = ({ loadPalette }) => {
         <div style={{ flex: 1 }}>
           <p>Sequential</p>
           <div className="space8" />
-          {[0, 1, 2, 3].map((i) => (
-            <>
-              <PalettePreview key={i} colors={colors} />
-            </>
+          {presets.sequential.map((preset, i) => (
+            <PalettePreview
+              key={i}
+              colors={preset.steps}
+              onClick={() => loadPalette(preset)}
+            />
           ))}
         </div>
         <div style={{ flex: 1 }}>
           <p>Diverging</p>
           <div className="space8" />
-          {[0, 1, 2, 3].map((i) => (
-            <>
-              <PalettePreview key={i} colors={colors} />
-            </>
+          {presets.diverging.map((preset, i) => (
+            <PalettePreview
+              key={i}
+              colors={preset.steps}
+              onClick={() => loadPalette(preset)}
+            />
           ))}
         </div>
       </div>

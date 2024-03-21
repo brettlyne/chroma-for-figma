@@ -9,23 +9,15 @@ import Checkbox from "../components/Checkbox";
 import ColorInputList from "../components/ColorInputList";
 import PaletteResults from "../components/PaletteResults/PaletteResults";
 
-const ChromaPage = ({ goBack, toast }) => {
-  const [mode, setMode] = useState("sequential");
-  const [numColors, setNumColors] = useState(6);
-
-  const [colors1, setColors1] = useState([
-    { id: "1", color: "#FF0000" },
-    { id: "2", color: "#00FF00" },
-    { id: "3", color: "#0000FF" },
-  ]);
-  const [colors2, setColors2] = useState([
-    { id: "4", color: "#FF0000" },
-    { id: "5", color: "#00FF00" },
-    { id: "6", color: "#0000FF" },
-  ]);
-
-  const [correctLightness, setCorrectLightness] = useState(false);
-  const [bezier, setBezier] = useState(false);
+const ChromaPage = ({ goBack, toast, initialState }) => {
+  const [mode, setMode] = useState(initialState.mode);
+  const [numColors, setNumColors] = useState(initialState.numColors);
+  const [colors1, setColors1] = useState(initialState.colors1);
+  const [colors2, setColors2] = useState(initialState.colors2);
+  const [correctLightness, setCorrectLightness] = useState(
+    initialState.correctLightness
+  );
+  const [bezier, setBezier] = useState(initialState.bezier);
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
