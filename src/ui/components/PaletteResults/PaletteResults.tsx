@@ -4,6 +4,7 @@ import chroma from "chroma-js";
 import { colorBlindCheck } from "../../utils/colorBlind";
 
 import ColorblindnessModal from "./ColorblindnessModal";
+import ExportAsStylesModal from "./ExportAsStylesModal";
 import HexCodesModal from "./HexCodesModal";
 import PaletteResultsList from "./PaletteResultsList";
 import Icon from "../Icon";
@@ -39,6 +40,13 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
         <ColorblindnessModal
           palette={colors}
           colorblindResults={colorblindResults}
+          onClose={() => setModalState(false)}
+        />
+      ) : null}
+
+      {modalState === "styles" ? (
+        <ExportAsStylesModal
+          palette={colors}
           onClose={() => setModalState(false)}
         />
       ) : null}
@@ -83,7 +91,11 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
           <button onClick={createSwatches} className="text">
             swatches
           </button>{" "}
-          | <button className="text">styles or variables</button> |{" "}
+          |{" "}
+          <button className="text" onClick={() => setModalState("styles")}>
+            styles or variables
+          </button>{" "}
+          |{" "}
           <button className="text" onClick={() => setModalState("hex")}>
             hex codes
           </button>

@@ -3,7 +3,7 @@ figma.showUI(__html__, { width: 370, height: 666 });
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
-figma.ui.onmessage = (msg) => {
+figma.ui.onmessage = async (msg) => {
   if (msg.type === "set-fill") {
     const color = msg.color;
     const nodes = figma.currentPage.selection;
@@ -102,5 +102,37 @@ figma.ui.onmessage = (msg) => {
       },
     ];
     figma.currentPage.appendChild(gradient);
+  }
+
+  if (msg.type === "export") {
+    const { prefix, palette, mode } = msg;
+    if (mode === "styles") {
+      for (let i = 0; i < palette.length; i++) {
+        const color = palette[i];
+        const style = figma.createPaintStyle();
+        style.name = `${prefix}${(i + 1).toString().padStart(2, "0")}`;
+        style.paints = [{ type: "SOLID", color }];
+      }
+      figma.notify(`Created ${palette.length} styles.`);
+    }
+
+    if (mode === "variables") {
+      const collection =
+        figma.variables.createVariableCollection("Chroma Palette");
+      collection.renameMode(collection.modes[0].modeId, "default");
+      for (let i = 0; i < palette.length; i++) {
+        const color = palette[i];
+        const name = `${prefix}${(i + 1).toString().padStart(2, "0")}`;
+        const colorVariable = figma.variables.createVariable(
+          name,
+          collection,
+          "COLOR"
+        );
+        colorVariable.setValueForMode(collection.modes[0].modeId, color);
+      }
+      figma.notify(
+        `Created ${palette.length} variables in collection: "Chroma Palette"`
+      );
+    }
   }
 };
