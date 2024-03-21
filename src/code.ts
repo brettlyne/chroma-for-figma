@@ -73,6 +73,8 @@ figma.ui.onmessage = async (msg) => {
     const offsetX = figma.viewport.center.x - (colors.length * swatchSize) / 2;
     const offsetY = figma.viewport.center.y - swatchSize / 2;
 
+    const swatches = [];
+
     for (const [index, color] of colors.entries()) {
       const rect = figma.createRectangle();
       rect.x = offsetX + index * swatchSize;
@@ -80,7 +82,10 @@ figma.ui.onmessage = async (msg) => {
       rect.resize(swatchSize, swatchSize);
       rect.fills = [{ type: "SOLID", color }];
       figma.currentPage.appendChild(rect);
+      swatches.push(rect);
     }
+
+    figma.group(swatches, figma.currentPage);
 
     const gradient = figma.createRectangle();
     gradient.x = offsetX;
