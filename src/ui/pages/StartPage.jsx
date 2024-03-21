@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 
 import PalettePreview from "../components/PalettePreview";
 import Icon from "../components/Icon";
