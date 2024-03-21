@@ -11,7 +11,7 @@ import StartPage from "./pages/StartPage";
 import ChromaPage from "./pages/ChromaPage";
 
 const App = () => {
-  const [page, setPage] = useState("chroma");
+  const [page, setPage] = useState("start");
   const [initialState, setInitialState] = useState(presets.sequential[0]);
 
   return (
