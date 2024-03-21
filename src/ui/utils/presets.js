@@ -64,6 +64,93 @@ presets.sequential = [
     steps: ["#183f5a", "#754670", "#b84b80", "#ea6082", "#f09862", "#f5c747"],
   },
   {
+    mode: "sequential",
+    numColors: "6",
+    colors1: [
+      {
+        id: "1",
+        color: "#326098",
+      },
+      {
+        color: "#5aa7ea",
+        id: "0.5085029813907955",
+      },
+      {
+        color: "#9ce354",
+        id: "0.8151493144354589",
+      },
+      {
+        id: "3",
+        color: "#d8f34e",
+      },
+    ],
+    colors2: [
+      {
+        color: "#3afd3a",
+        id: "0.8987287111793338",
+      },
+      {
+        id: "4",
+        color: "#4b5b33",
+      },
+    ],
+    correctLightness: false,
+    bezier: true,
+    steps: ["#326098", "#5787b2", "#7faca8", "#9fcb8a", "#bae465", "#d8f34e"],
+  },
+  {
+    mode: "sequential",
+    numColors: "8",
+    colors1: [
+      {
+        id: "1",
+        color: "#da5f4c",
+      },
+      {
+        id: "3",
+        color: "#e49f40",
+      },
+      {
+        color: "#ebdf70",
+        id: "0.7658614727428408",
+      },
+      {
+        color: "#91b956",
+        id: "0.5844668317295241",
+      },
+      {
+        color: "#5dacea",
+        id: "0.5583552530647942",
+      },
+      {
+        color: "#a749c1",
+        id: "0.12678327928565403",
+      },
+    ],
+    colors2: [
+      {
+        id: "4",
+        color: "#05fffb",
+      },
+      {
+        color: "#127d7b",
+        id: "0.47830772234919783",
+      },
+    ],
+    correctLightness: false,
+    bezier: false,
+    steps: [
+      "#da5f4c",
+      "#e18d43",
+      "#e7ba55",
+      "#deda6c",
+      "#9ebe5a",
+      "#73b2ab",
+      "#7290de",
+      "#a749c1",
+    ],
+  },
+  {
     colors1: [
       {
         id: "1",
@@ -159,6 +246,37 @@ presets.sequential = [
     correctLightness: true,
     bezier: false,
     steps: ["#6b1a18", "#9d2e2b", "#d3433f", "#ea7672", "#f2a9a8", "#f9d9d9"],
+  },
+  {
+    mode: "sequential",
+    numColors: "6",
+    colors1: [
+      {
+        id: "1",
+        color: "#2d2b29",
+      },
+      {
+        color: "#cd41d4",
+        id: "0.8151493144354589",
+      },
+      {
+        id: "3",
+        color: "#e889f9",
+      },
+    ],
+    colors2: [
+      {
+        color: "#3afd3a",
+        id: "0.8987287111793338",
+      },
+      {
+        id: "4",
+        color: "#4b5b33",
+      },
+    ],
+    correctLightness: false,
+    bezier: true,
+    steps: ["#2d2b29", "#653b63", "#954997", "#bb5bc3", "#d870e4", "#e889f9"],
   },
 ];
 
@@ -332,6 +450,51 @@ presets.diverging = [
     ],
   },
   {
+    mode: "diverging",
+    numColors: "9",
+    colors1: [
+      {
+        id: "1",
+        color: "#821917",
+      },
+      {
+        id: "2",
+        color: "#ff4d4d",
+      },
+      {
+        id: "3",
+        color: "#ffffff",
+      },
+    ],
+    colors2: [
+      {
+        id: "4",
+        color: "#ffffff",
+      },
+      {
+        color: "#bababa",
+        id: "0.47830772234919783",
+      },
+      {
+        color: "#404040",
+        id: "0.1183321216195754",
+      },
+    ],
+    correctLightness: true,
+    bezier: true,
+    steps: [
+      "#821917",
+      "#bf423c",
+      "#ec7a6f",
+      "#ffbcb3",
+      "#ffffff",
+      "#cbcbcb",
+      "#9a9a9a",
+      "#6b6b6b",
+      "#404040",
+    ],
+  },
+  {
     colors1: [
       {
         id: "1",
@@ -368,6 +531,80 @@ presets.diverging = [
       "#9985bc",
       "#7a62a8",
       "#594094",
+    ],
+  },
+  {
+    mode: "diverging",
+    numColors: "9",
+    colors1: [
+      {
+        id: "1",
+        color: "#d58280",
+      },
+      {
+        id: "3",
+        color: "#333333",
+      },
+    ],
+    colors2: [
+      {
+        id: "4",
+        color: "#333333",
+      },
+      {
+        color: "#87d3c5",
+        id: "0.1183321216195754",
+      },
+    ],
+    correctLightness: false,
+    bezier: true,
+    steps: [
+      "#d58280",
+      "#aa6e6c",
+      "#815a58",
+      "#594645",
+      "#333333",
+      "#485754",
+      "#5d7e78",
+      "#72a89e",
+      "#87d3c5",
+    ],
+  },
+  {
+    mode: "diverging",
+    numColors: "9",
+    colors1: [
+      {
+        id: "1",
+        color: "#efb53f",
+      },
+      {
+        id: "3",
+        color: "#373645",
+      },
+    ],
+    colors2: [
+      {
+        id: "4",
+        color: "#373645",
+      },
+      {
+        color: "#8d84f7",
+        id: "0.1183321216195754",
+      },
+    ],
+    correctLightness: true,
+    bezier: false,
+    steps: [
+      "#efb53f",
+      "#be9341",
+      "#907342",
+      "#635444",
+      "#373645",
+      "#4b496f",
+      "#615c9b",
+      "#7670c8",
+      "#8d84f7",
     ],
   },
 ];
