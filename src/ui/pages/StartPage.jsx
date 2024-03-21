@@ -5,16 +5,6 @@ import presets from "../utils/presets";
 import PalettePreview from "../components/PalettePreview";
 import Icon from "../components/Icon";
 
-// TODO: load actual palettes once I have the data (tool functions)
-const colors = [
-  "#174498",
-  "#4768A9",
-  "#6B8FBB",
-  "#8FB6CC",
-  "#BADEDB",
-  "#FFFFE3",
-];
-
 const StartPage = ({ setPage, setInitialState }) => {
   const loadPalette = (preset) => {
     setInitialState(preset);
@@ -47,39 +37,28 @@ const StartPage = ({ setPage, setInitialState }) => {
       </p>
       <div className="space12" />
 
-      <p>Recent</p>
+      <p>Sequential</p>
       <div className="space8" />
       <div className="columns">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <div style={{ flex: 1, minWidth: "120px" }}>
-            <PalettePreview key={i} colors={colors} />
-          </div>
+        {presets.sequential.map((preset, i) => (
+          <PalettePreview
+            key={i}
+            colors={preset.steps}
+            onClick={() => loadPalette(preset)}
+          />
         ))}
       </div>
 
+      <p>Diverging</p>
+      <div className="space8" />
       <div className="columns">
-        <div style={{ flex: 1 }}>
-          <p>Sequential</p>
-          <div className="space8" />
-          {presets.sequential.map((preset, i) => (
-            <PalettePreview
-              key={i}
-              colors={preset.steps}
-              onClick={() => loadPalette(preset)}
-            />
-          ))}
-        </div>
-        <div style={{ flex: 1 }}>
-          <p>Diverging</p>
-          <div className="space8" />
-          {presets.diverging.map((preset, i) => (
-            <PalettePreview
-              key={i}
-              colors={preset.steps}
-              onClick={() => loadPalette(preset)}
-            />
-          ))}
-        </div>
+        {presets.diverging.map((preset, i) => (
+          <PalettePreview
+            key={i}
+            colors={preset.steps}
+            onClick={() => loadPalette(preset)}
+          />
+        ))}
       </div>
     </>
   );

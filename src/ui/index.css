@@ -207,6 +207,8 @@ input[type="text"] {
 }
 
 .palette-preview {
+  flex: 1;
+  min-width: 140px;
   cursor: pointer;
   display: flex;
   margin-bottom: 12px;
