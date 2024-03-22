@@ -75,7 +75,7 @@ figma.ui.onmessage = async (msg) => {
     const frame = figma.createFrame();
     frame.x = offsetX;
     frame.y = offsetY;
-    frame.resize(Math.max(380, 40 + swatchWidth * colors.length), 224);
+    frame.resize(Math.max(380, 40 + swatchWidth * colors.length), 234);
     frame.name = "Chroma Palette";
     frame.fills = [{ type: "SOLID", color: { r: 0.92, g: 0.92, b: 0.92 } }];
 
@@ -84,7 +84,7 @@ figma.ui.onmessage = async (msg) => {
     for (const [index, color] of colors.entries()) {
       const rect = figma.createRectangle();
       rect.x = 20 + index * swatchWidth;
-      rect.y = 80;
+      rect.y = 90;
       rect.resize(swatchWidth, swatchHeight);
       rect.fills = [{ type: "SOLID", color }];
       frame.appendChild(rect);
@@ -95,7 +95,7 @@ figma.ui.onmessage = async (msg) => {
 
     const gradient = figma.createRectangle();
     gradient.x = 20;
-    gradient.y = 164;
+    gradient.y = 174;
     gradient.resize(swatchWidth * colors.length, swatchHeight / 2);
     gradient.fills = [
       {
@@ -113,22 +113,28 @@ figma.ui.onmessage = async (msg) => {
       },
     ];
     frame.appendChild(gradient);
-
-    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    await figma.loadFontAsync({ family: "Inter", style: "Light" });
+    const font = { family: "Inter", style: "Light" };
     const description = figma.createText();
-    description.lineHeight = { value: 18, unit: "PIXELS" };
+    description.fontName = font;
+    description.lineHeight = { value: 20, unit: "PIXELS" };
     description.x = 20;
     description.y = 12;
     description.resize(340, 60);
-    description.characters = `To edit this palette in the Chroma Data Vis Palettes plugin: 
-    1. select this Frame
-    2. relaunch the plugin from the Design panel`;
-    description.setRangeHyperlink(28, 52, {
+    description.characters = `To edit this palette, launch the 
+Chroma Data Vis Palettes plugin 
+with this frame selected.`;
+    description.setRangeHyperlink(34, 58, {
       type: "URL",
       value: "https://github.com/brettlyne/chroma-for-figma",
     });
-    description.setRangeTextDecoration(28, 52, "UNDERLINE");
+    description.setRangeTextDecoration(34, 58, "UNDERLINE");
     frame.appendChild(description);
+
+    frame.setRelaunchData({
+      edit: "Edit with Chroma Data Vis Palettes plugin",
+      data: JSON.stringify({ type: "edit palette", id: frame.id }),
+    });
   }
 
   if (msg.type === "export") {

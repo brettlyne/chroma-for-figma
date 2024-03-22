@@ -13,5 +13,6 @@
       "https://fonts.gstatic.com"
     ]
   },
-  "documentAccess": "dynamic-page"
+  "documentAccess": "dynamic-page",
+  "relaunchButtons": [{ "command": "edit", "name": "Edit palette" }]
 }
