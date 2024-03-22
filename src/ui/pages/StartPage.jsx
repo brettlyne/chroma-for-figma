@@ -49,6 +49,8 @@ const StartPage = ({ setPage, setInitialState }) => {
         ))}
       </div>
 
+      <div className="space8" />
+
       <p>Diverging</p>
       <div className="space8" />
       <div className="columns">
