@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import chroma from "chroma-js";
 
-import SegmentedButton from "../../components/SegmentedButton";
 import Icon from "../../components/Icon";
 
 const ExportAsStylesModal = ({ onClose, palette }) => {
-  const [mode, setMode] = useState("styles");
   const [prefix, setPrefix] = useState("data-");
 
   useEffect(() => {
@@ -15,7 +13,7 @@ const ExportAsStylesModal = ({ onClose, palette }) => {
     };
   }, []);
 
-  const exportColors = () => {
+  const exportColors = (mode) => {
     parent.postMessage(
       {
         pluginMessage: {
@@ -39,15 +37,6 @@ const ExportAsStylesModal = ({ onClose, palette }) => {
         <h2>Export as styles or variables</h2>
         <div className="space20" />
         <p>
-          Export as:
-          <SegmentedButton
-            options={["styles", "variables"]}
-            value={mode}
-            onChange={(value) => setMode(value)}
-          />
-        </p>
-        <div className="space16" />
-        <p>
           Name prefix:{` `}
           <input
             style={{ width: "" }}
@@ -57,9 +46,14 @@ const ExportAsStylesModal = ({ onClose, palette }) => {
           />
         </p>
         <div className="space20" />
-        <button className="button" onClick={exportColors}>
-          export to {mode}
-        </button>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button className="button" onClick={() => exportColors("styles")}>
+            export to styles
+          </button>
+          <button className="button" onClick={() => exportColors("variables")}>
+            export to variables
+          </button>
+        </div>
       </div>
     </div>
   );
