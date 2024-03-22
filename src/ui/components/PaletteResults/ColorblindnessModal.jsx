@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect } from "react";
 
 import { colorBlindSim } from "../../utils/colorBlind";
 import Icon from "../../components/Icon";
 
 const types = ["deuteranopia", "protanopia", "tritanopia"];
 
-const ColorblindnessModal = ({
-  onClose,
-  palette,
-  children,
-  colorblindResults,
-}) => {
+const ColorblindnessModal = ({ onClose, palette, colorblindResults }) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
