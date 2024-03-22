@@ -69,17 +69,18 @@ figma.ui.onmessage = async (msg) => {
 
   if (msg.type === "create-swatches") {
     const colors = msg.colors;
-    const swatchSize = 100;
-    const offsetX = figma.viewport.center.x - (colors.length * swatchSize) / 2;
-    const offsetY = figma.viewport.center.y - swatchSize / 2;
+    const swatchWidth = 20;
+    const swatchHeight = 80;
+    const offsetX = figma.viewport.center.x - (colors.length * swatchWidth) / 2;
+    const offsetY = figma.viewport.center.y - swatchHeight / 2;
 
     const swatches = [];
 
     for (const [index, color] of colors.entries()) {
       const rect = figma.createRectangle();
-      rect.x = offsetX + index * swatchSize;
+      rect.x = offsetX + index * swatchWidth;
       rect.y = offsetY;
-      rect.resize(swatchSize, swatchSize);
+      rect.resize(swatchWidth, swatchHeight);
       rect.fills = [{ type: "SOLID", color }];
       figma.currentPage.appendChild(rect);
       swatches.push(rect);
@@ -89,8 +90,8 @@ figma.ui.onmessage = async (msg) => {
 
     const gradient = figma.createRectangle();
     gradient.x = offsetX;
-    gradient.y = offsetY + swatchSize + 4;
-    gradient.resize(swatchSize * colors.length, swatchSize / 2);
+    gradient.y = offsetY + swatchHeight + 4;
+    gradient.resize(swatchWidth * colors.length, swatchHeight / 2);
     gradient.fills = [
       {
         type: "GRADIENT_LINEAR",
