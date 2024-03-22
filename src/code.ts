@@ -15,7 +15,6 @@ figma.ui.onmessage = async (msg) => {
   }
 
   if (msg.type === "get-fill") {
-    const nodes = figma.currentPage.selection;
     const selection = figma.currentPage.selection?.[0];
 
     if (
@@ -56,7 +55,6 @@ figma.ui.onmessage = async (msg) => {
       figma.notify("Select a layer with a solid fill to sample the color.");
       return;
     }
-    const color = selected?.fills?.[0].color;
 
     figma.ui.postMessage(
       JSON.stringify({
