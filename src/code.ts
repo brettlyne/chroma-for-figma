@@ -69,28 +69,35 @@ figma.ui.onmessage = async (msg) => {
 
   if (msg.type === "create-swatches") {
     const colors = msg.colors;
-    const swatchWidth = 20;
+    const swatchWidth = colors.length < 8 ? 60 : colors.length < 12 ? 40 : 30;
     const swatchHeight = 80;
     const offsetX = figma.viewport.center.x - (colors.length * swatchWidth) / 2;
     const offsetY = figma.viewport.center.y - swatchHeight / 2;
+
+    const frame = figma.createFrame();
+    frame.x = offsetX;
+    frame.y = offsetY;
+    frame.resize(Math.max(380, 40 + swatchWidth * colors.length), 224);
+    frame.name = "Chroma Palette";
+    frame.fills = [{ type: "SOLID", color: { r: 0.92, g: 0.92, b: 0.92 } }];
 
     const swatches = [];
 
     for (const [index, color] of colors.entries()) {
       const rect = figma.createRectangle();
-      rect.x = offsetX + index * swatchWidth;
-      rect.y = offsetY;
+      rect.x = 20 + index * swatchWidth;
+      rect.y = 80;
       rect.resize(swatchWidth, swatchHeight);
       rect.fills = [{ type: "SOLID", color }];
-      figma.currentPage.appendChild(rect);
+      frame.appendChild(rect);
       swatches.push(rect);
     }
 
-    figma.group(swatches, figma.currentPage);
+    figma.group(swatches, frame);
 
     const gradient = figma.createRectangle();
-    gradient.x = offsetX;
-    gradient.y = offsetY + swatchHeight + 4;
+    gradient.x = 20;
+    gradient.y = 164;
     gradient.resize(swatchWidth * colors.length, swatchHeight / 2);
     gradient.fills = [
       {
@@ -107,7 +114,23 @@ figma.ui.onmessage = async (msg) => {
         ],
       },
     ];
-    figma.currentPage.appendChild(gradient);
+    frame.appendChild(gradient);
+
+    await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+    const description = figma.createText();
+    description.lineHeight = { value: 18, unit: "PIXELS" };
+    description.x = 20;
+    description.y = 12;
+    description.resize(340, 60);
+    description.characters = `To edit this palette in the Chroma Data Vis Palettes plugin: 
+    1. select this Frame
+    2. relaunch the plugin from the Design panel`;
+    description.setRangeHyperlink(28, 52, {
+      type: "URL",
+      value: "https://github.com/brettlyne/chroma-for-figma",
+    });
+    description.setRangeTextDecoration(28, 52, "UNDERLINE");
+    frame.appendChild(description);
   }
 
   if (msg.type === "export") {
