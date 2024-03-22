@@ -9,10 +9,10 @@ import "../index.css";
 import SegmentedButton from "../components/SegmentedButton";
 import Checkbox from "../components/Checkbox";
 import Icon from "../components/Icon";
-import ColorInputItem from "../components/ColorInputItem";
 import ColorInputList from "../components/ColorInputList";
 
 const App = () => {
+  const [segVal, setSegVal] = useState("one");
   const [iconColor, setIconColor] = useState("rebeccapurple");
   const [colors1, setColors1] = useState([
     { color: "#ff8800", id: "2" },
@@ -45,13 +45,12 @@ const App = () => {
       </pre>
       <p>
         Test:
-        <SegmentedButton options={["one", "two", "three"]} />
+        <SegmentedButton
+          value={segVal}
+          onChange={(v) => setSegVal(v)}
+          options={["one", "two", "three"]}
+        />
       </p>
-      <p>
-        Test:
-        <SegmentedButton options={["sequential", "diverging"]} />
-      </p>
-
       <hr />
 
       <p>
