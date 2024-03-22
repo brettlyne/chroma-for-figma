@@ -1,5 +1,19 @@
 figma.showUI(__html__, { width: 370, height: 666 });
 
+// send initial selection "chroma" pluginData on launch
+const selection = figma.currentPage.selection;
+if (selection.length > 0 && selection[0].type === "FRAME") {
+  const settings = selection[0].getPluginData("chroma");
+  if (settings) {
+    figma.ui.postMessage(
+      JSON.stringify({
+        type: "initial-selection",
+        settings,
+      })
+    );
+  }
+}
+
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
@@ -30,7 +44,7 @@ figma.ui.onmessage = async (msg) => {
     if ("fills" in selection && selection.fills?.[0]?.type === "SOLID") {
       figma.ui.postMessage(
         JSON.stringify({
-          msgType: "set-fill",
+          type: "set-fill",
           color: selection.fills[0].color,
         })
       );
@@ -58,7 +72,7 @@ figma.ui.onmessage = async (msg) => {
 
     figma.ui.postMessage(
       JSON.stringify({
-        msgType: "set-color-by-id",
+        type: "set-color-by-id",
         id,
         color: selected.fills[0].color,
       })
@@ -66,7 +80,7 @@ figma.ui.onmessage = async (msg) => {
   }
 
   if (msg.type === "create-swatches") {
-    const colors = msg.colors;
+    const { colors, settings } = msg;
     const swatchWidth = colors.length < 8 ? 60 : colors.length < 12 ? 40 : 30;
     const swatchHeight = 80;
     const offsetX = figma.viewport.center.x - (colors.length * swatchWidth) / 2;
@@ -135,6 +149,8 @@ with this frame selected.`;
       edit: "Edit with Chroma Data Vis Palettes plugin",
       data: JSON.stringify({ type: "edit palette", id: frame.id }),
     });
+    console.log("settings", settings);
+    frame.setPluginData("chroma", JSON.stringify(settings));
   }
 
   if (msg.type === "export") {

@@ -34,7 +34,7 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
 
   onmessage = (event) => {
     const message = JSON.parse(event.data.pluginMessage);
-    if (message.msgType === "set-color-by-id") {
+    if (message.type === "set-color-by-id") {
       const { id, color } = message;
       const hexColor = chroma([
         color.r * 255,
@@ -138,7 +138,18 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
       </p>
       <div className="space12" />
 
-      <PaletteResults colors={steps} toast={toast} />
+      <PaletteResults
+        colors={steps}
+        toast={toast}
+        settings={{
+          mode,
+          numColors,
+          colors1,
+          colors2,
+          correctLightness,
+          bezier,
+        }}
+      />
 
       <div className="space20" />
       <div className="space20" />

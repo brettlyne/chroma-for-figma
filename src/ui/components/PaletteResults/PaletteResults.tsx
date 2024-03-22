@@ -12,10 +12,15 @@ import Icon from "../Icon";
 interface PaletteResultsProps {
   colors: string[];
   toast: (toastString: string) => void;
+  settings: {};
 }
 
-const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
-  const [modalState, setModalState] = useState(false);
+const PaletteResults: React.FC<PaletteResultsProps> = ({
+  colors,
+  toast,
+  settings,
+}) => {
+  const [modalState, setModalState] = useState("");
 
   const colorblindResults = colorBlindCheck(colors);
 
@@ -28,6 +33,7 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
             const [r, g, b] = chroma(color).rgb();
             return { r: r / 255, g: g / 255, b: b / 255 };
           }),
+          settings,
         },
       },
       "*"
@@ -40,21 +46,21 @@ const PaletteResults: React.FC<PaletteResultsProps> = ({ colors, toast }) => {
         <ColorblindnessModal
           palette={colors}
           colorblindResults={colorblindResults}
-          onClose={() => setModalState(false)}
+          onClose={() => setModalState("")}
         />
       ) : null}
 
       {modalState === "styles" ? (
         <ExportAsStylesModal
           palette={colors}
-          onClose={() => setModalState(false)}
+          onClose={() => setModalState("")}
         />
       ) : null}
 
       {modalState === "hex" ? (
         <HexCodesModal
           palette={colors}
-          onClose={() => setModalState(false)}
+          onClose={() => setModalState("")}
           toast={toast}
         />
       ) : null}

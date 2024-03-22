@@ -14,6 +14,15 @@ const App = () => {
   const [page, setPage] = useState("start");
   const [initialState, setInitialState] = useState(presets.sequential[0]);
 
+  // message received from the plugin on launch with initial selection settings
+  onmessage = (event) => {
+    const message = JSON.parse(event.data.pluginMessage);
+    if (message.type === "initial-selection") {
+      setInitialState(JSON.parse(message.settings));
+      setPage("chroma");
+    }
+  };
+
   return (
     <div className="container">
       {page === "start" ? (
