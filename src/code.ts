@@ -140,7 +140,7 @@ Chroma Data Vis Palettes plugin
 with this frame selected.`;
     description.setRangeHyperlink(34, 58, {
       type: "URL",
-      value: "https://github.com/brettlyne/chroma-for-figma",
+      value: "https://www.figma.com/community/plugin/1353117070534651153",
     });
     description.setRangeTextDecoration(34, 58, "UNDERLINE");
     frame.appendChild(description);

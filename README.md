@@ -1,6 +1,17 @@
 # chroma-for-figma
 
-Multi-hued multi-stop color scales tool adapted for Figma from gka.github.io/palettes/ by [Gregor Aisch](https://www.vis4.net/).
+### https://www.figma.com/community/plugin/1353117070534651153
+
+Multi-hued multi-stop color scales tool adapted for Figma from [gka.github.io/palettes/](https://gka.github.io/palettes/) by [Gregor Aisch](https://www.vis4.net/).
+
+#### Exports to:
+
+- swatches
+- hex codes
+- document styles
+- variables
+
+![Chroma Plugin Preview](./media/chroma-plugin-preview.png)
 
 ---
 
