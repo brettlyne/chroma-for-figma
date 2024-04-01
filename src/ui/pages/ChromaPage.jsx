@@ -10,14 +10,17 @@ import ColorInputList from "../components/ColorInputList";
 import PaletteResults from "../components/PaletteResults/PaletteResults";
 
 const ChromaPage = ({ goBack, toast, initialState }) => {
-  const [mode, setMode] = useState(initialState.mode);
-  const [numColors, setNumColors] = useState(initialState.numColors);
-  const [colors1, setColors1] = useState(initialState.colors1);
-  const [colors2, setColors2] = useState(initialState.colors2);
-  const [correctLightness, setCorrectLightness] = useState(
-    initialState.correctLightness
-  );
-  const [bezier, setBezier] = useState(initialState.bezier);
+  const [state, setState] = useState(initialState);
+  const { mode, numColors, colors1, colors2, correctLightness, bezier } = state;
+
+  // setters for state
+  const setMode = (value) => setState({ ...state, mode: value });
+  const setNumColors = (value) => setState({ ...state, numColors: value });
+  const setColors1 = (value) => setState({ ...state, colors1: value });
+  const setColors2 = (value) => setState({ ...state, colors2: value });
+  const setCorrectLightness = (value) =>
+    setState({ ...state, correctLightness: value });
+  const setBezier = (value) => setState({ ...state, bezier: value });
 
   const handleDragEnd = (result) => {
     if (!result.destination) {
@@ -119,7 +122,6 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
         </DragDropContext>
       </p>
       <div className="space12" />
-
       <p>
         <Checkbox
           label="Correct lightness"
@@ -128,7 +130,6 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
         />
       </p>
       <div className="space4" />
-
       <p>
         <Checkbox
           label="Bezier interpolation"
@@ -137,7 +138,6 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
         />
       </p>
       <div className="space12" />
-
       <PaletteResults
         colors={steps}
         toast={toast}
@@ -150,7 +150,6 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
           bezier,
         }}
       />
-
       <div className="space20" />
       <div className="space20" />
     </>
