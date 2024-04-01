@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import chroma from "chroma-js";
+import useUndo from "use-undo";
 import generateSteps from "../utils/generateSteps";
 
 import Icon from "../components/Icon";
@@ -10,31 +11,38 @@ import ColorInputList from "../components/ColorInputList";
 import PaletteResults from "../components/PaletteResults/PaletteResults";
 
 const ChromaPage = ({ goBack, toast, initialState }) => {
-  const [state, setState] = useState(initialState);
-  const { mode, numColors, colors1, colors2, correctLightness, bezier } = state;
+  const [state, { set: setState, undo, redo }] = useUndo(initialState);
+  const { mode, numColors, colors1, colors2, correctLightness, bezier } =
+    state.present;
 
+  // event listener for undo / redo
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [undo, redo]);
 
+  // handle redo / undo on mac (metaKey) and pc (ctrlKey)
   const handleKeyDown = (evtobj) => {
-    // handle undo on mac (metaKey) and pc (ctrlKey)
     if ((evtobj.metaKey || evtobj.ctrlKey) && evtobj.keyCode === 90) {
-      toast("Undo not implemented yet", "error");
+      if (evtobj.shiftKey) {
+        redo();
+      } else {
+        undo();
+      }
     }
   };
 
   // setters for state
-  const setMode = (value) => setState({ ...state, mode: value });
-  const setNumColors = (value) => setState({ ...state, numColors: value });
-  const setColors1 = (value) => setState({ ...state, colors1: value });
-  const setColors2 = (value) => setState({ ...state, colors2: value });
+  const setMode = (value) => setState({ ...state.present, mode: value });
+  const setNumColors = (value) =>
+    setState({ ...state.present, numColors: value });
+  const setColors1 = (value) => setState({ ...state.present, colors1: value });
+  const setColors2 = (value) => setState({ ...state.present, colors2: value });
   const setCorrectLightness = (value) =>
-    setState({ ...state, correctLightness: value });
-  const setBezier = (value) => setState({ ...state, bezier: value });
+    setState({ ...state.present, correctLightness: value });
+  const setBezier = (value) => setState({ ...state.present, bezier: value });
 
   // drag and drop reordering for colors
   const handleDragEnd = (result) => {

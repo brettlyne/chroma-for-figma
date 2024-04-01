@@ -29,10 +29,13 @@ dependencies:
   react-toastify:
     specifier: ^10.0.5
     version: 10.0.5(react-dom@18.2.0)(react@18.2.0)
+  use-undo:
+    specifier: ^1.1.1
+    version: 1.1.1(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@figma/plugin-typings':
-    specifier: ^1.85.0
+    specifier: ^1.88.0
     version: 1.88.0
   '@types/node':
     specifier: ^20.11.16
@@ -1280,6 +1283,16 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /use-undo@1.1.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-2NNpJv7TDQpyETgRTG5I/CsABX5nhExpx8PEhWiDsnW9C5BA6Xnn8G9u/lPeg3+JsBrBtUx8/5bMbGmpnWz1Cw==}
+    peerDependencies:
+      react: '>=16.8.6'
+      react-dom: '>=16.8.6'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /vite-plugin-singlefile@1.0.0(rollup@4.13.0)(vite@5.1.6):
