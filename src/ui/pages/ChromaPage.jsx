@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import chroma from "chroma-js";
 import generateSteps from "../utils/generateSteps";
@@ -12,6 +12,20 @@ import PaletteResults from "../components/PaletteResults/PaletteResults";
 const ChromaPage = ({ goBack, toast, initialState }) => {
   const [state, setState] = useState(initialState);
   const { mode, numColors, colors1, colors2, correctLightness, bezier } = state;
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const handleKeyDown = (evtobj) => {
+    // handle undo on mac (metaKey) and pc (ctrlKey)
+    if ((evtobj.metaKey || evtobj.ctrlKey) && evtobj.keyCode === 90) {
+      toast("Undo not implemented yet", "error");
+    }
+  };
 
   // setters for state
   const setMode = (value) => setState({ ...state, mode: value });
