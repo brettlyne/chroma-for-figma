@@ -18,6 +18,7 @@ if (selection.length > 0 && selection[0].type === "FRAME") {
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
 figma.ui.onmessage = async (msg) => {
+  // sets the fill of the selected layers
   if (msg.type === "set-fill") {
     const color = msg.color;
     const nodes = figma.currentPage.selection;
@@ -28,29 +29,7 @@ figma.ui.onmessage = async (msg) => {
     });
   }
 
-  if (msg.type === "get-fill") {
-    const selection = figma.currentPage.selection?.[0];
-
-    if (
-      !selection ||
-      !("fills" in selection) ||
-      !Array.isArray(selection.fills) ||
-      !selection.fills[0]?.color
-    ) {
-      figma.notify("Select a layer with a solid fill to sample the color.");
-      return;
-    }
-
-    if ("fills" in selection && selection.fills?.[0]?.type === "SOLID") {
-      figma.ui.postMessage(
-        JSON.stringify({
-          type: "set-fill",
-          color: selection.fills[0].color,
-        })
-      );
-    }
-  }
-
+  // get fill from selected layer and send to UI to apply to a specific id
   if (msg.type === "eye-dropper") {
     const id = msg.id;
     const nodes = figma.currentPage.selection;
@@ -156,11 +135,22 @@ with this frame selected.`;
   if (msg.type === "export") {
     const { prefix, palette, mode } = msg;
     if (mode === "styles") {
+      const styles = await figma.getLocalPaintStylesAsync();
+
       for (let i = 0; i < palette.length; i++) {
         const color = palette[i];
-        const style = figma.createPaintStyle();
-        style.name = `${prefix}${(i + 1).toString().padStart(2, "0")}`;
-        style.paints = [{ type: "SOLID", color }];
+        const name = `${prefix}${(i + 1).toString().padStart(2, "0")}`;
+        // if style exists with name in styles, update it
+        const existingStyle = styles.find((style) => style.name === name);
+        if (existingStyle) {
+          existingStyle.paints = [{ type: "SOLID", color }];
+        }
+        // otherwise create a new style
+        else {
+          const style = figma.createPaintStyle();
+          style.name = name;
+          style.paints = [{ type: "SOLID", color }];
+        }
       }
       figma.notify(`Created ${palette.length} styles.`);
     }
