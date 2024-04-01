@@ -18,20 +18,20 @@ const ColorInputList: React.FC<ColorInputListProps> = ({
   toast,
 }) => {
   const handleColorChange = (newColor: string, index: number) => {
-    const newColors = [...colors];
+    const newColors = structuredClone(colors);
     newColors[index].color = newColor;
     setColors(newColors);
   };
 
   const handleDelete = (index: number) => {
-    const newColors = [...colors];
+    const newColors = structuredClone(colors);
     newColors.splice(index, 1);
     setColors(newColors);
   };
 
   const addColor = () => {
-    const newColors = [...colors];
-    newColors.push({ color: "#00ff00", id: Math.random().toString() });
+    const newColors = structuredClone(colors);
+    newColors.push({ color: "#f0f0f0", id: Math.random().toString() });
     setColors(newColors);
   };
 
