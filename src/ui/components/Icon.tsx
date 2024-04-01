@@ -13,7 +13,7 @@ type IconProps = {
     | "close"
     | "small_check"
     | "small_x";
-};
+} & React.SVGProps<SVGSVGElement>;
 
 const Icon: React.FC<IconProps> = ({ icon, ...props }) => {
   const svgProps = {
