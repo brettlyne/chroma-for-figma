@@ -6,9 +6,9 @@ import Icon from "./Icon";
 
 interface ColorInputListProps {
   id: string;
-  colors: string[];
-  setColors: (newColors: string[]) => void;
-  toast: (toastString: string[]) => void;
+  colors: { color: string; id: string }[];
+  setColors: (colors: { color: string; id: string }[]) => void;
+  toast: (toastString: string) => void;
 }
 
 const ColorInputList: React.FC<ColorInputListProps> = ({

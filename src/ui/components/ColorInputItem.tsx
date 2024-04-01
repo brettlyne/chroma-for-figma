@@ -10,8 +10,9 @@ interface ColorInputItemProps {
   index: number;
   color: string;
   onChange: (newColor: string) => void;
-  onDragHandleDrag: () => void;
   toast: (toastString: string) => void;
+  onDelete: () => void;
+  lastItemInList: boolean;
 }
 
 const ColorInputItem: React.FC<ColorInputItemProps> = ({
@@ -19,7 +20,6 @@ const ColorInputItem: React.FC<ColorInputItemProps> = ({
   index,
   color,
   onChange,
-  onDragHandleDrag,
   onDelete,
   lastItemInList,
   toast,
