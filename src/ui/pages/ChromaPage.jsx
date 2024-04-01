@@ -22,6 +22,7 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
     setState({ ...state, correctLightness: value });
   const setBezier = (value) => setState({ ...state, bezier: value });
 
+  // drag and drop reordering for colors
   const handleDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -35,6 +36,7 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
     sourceId === "1" ? setColors1([...colors1]) : setColors2([...colors2]);
   };
 
+  // will receive a message from Figma plugin when we use the eyedropper
   onmessage = (event) => {
     const message = JSON.parse(event.data.pluginMessage);
     if (message.type === "set-color-by-id") {
@@ -55,6 +57,7 @@ const ChromaPage = ({ goBack, toast, initialState }) => {
     }
   };
 
+  // "steps" are the colors that will be displayed in the palette
   const steps = generateSteps(
     colors1,
     colors2,
